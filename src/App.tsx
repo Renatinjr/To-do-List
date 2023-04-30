@@ -6,17 +6,18 @@ import { TaskContext } from "./components/TaskContext";
 import { Task } from "./components/Task";
 
 export function App() {
-  const [task] = useState<Task[]>([
-    { nameTask: "Cagar", description: "Testando", completed: true },
-    { nameTask: "Chorar", description: "Testando", completed: false },
-    { nameTask: "Dormir", description: "Testando", completed: true },
+  const [task, setTask] = useState<Task[]>([
+    { nameTask: "Cagar", description: "Testando", completed: true, id: 1 },
+    { nameTask: "Chorar", description: "Testando", completed: false, id: 2 },
+    { nameTask: "Dormir", description: "Testando", completed: true, id: 3 },
   ]);
 
+  console.log("App:", task);
   return (
     <section className="bg-slate-900 w-screen h-screen flex justify-center pt-3">
-      <div className="bg-slate-800 w-96 h-44 p-4 rounded-md">
+      <div className="bg-slate-800 w-96 h-auto p-4 rounded-md">
         <Header />
-        <TaskContext.Provider value={task}>
+        <TaskContext.Provider value={{ task, setTask }}>
           <InnerTask />
           <List />
         </TaskContext.Provider>

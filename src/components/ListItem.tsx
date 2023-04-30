@@ -1,31 +1,31 @@
-import { useContext } from "react";
 import { Button } from "./Button";
-import { TaskContext } from "./TaskContext";
 
 type ListItemProps = {
   className: string;
   taskName: string;
   description?: string;
-  details?: JSX.Element;
-  remove?: JSX.Element;
+  iconDetails?: JSX.Element;
+  iconRemove?: JSX.Element;
+  eventDetails?: any;
+  eventRemove?: any;
+  fowardRef?: any;
 };
 
 export function ListItem({
   className = "",
   taskName = "",
-  details,
-  remove,
+  iconDetails,
+  iconRemove,
+  eventDetails,
+  eventRemove,
+  fowardRef,
 }: ListItemProps) {
-  const tasksList = useContext(TaskContext);
-
-  console.log(tasksList);
-
   return (
-    <li className={className}>
+    <li className={className} ref={fowardRef}>
       <span className="text-white">{taskName}</span>
       <span className="flex items-center text-white gap-2">
-        <Button children={details} />
-        <Button children={remove} />
+        <Button children={iconDetails} onClick={eventDetails} />
+        <Button children={iconRemove} onClick={eventRemove} />
       </span>
     </li>
   );
